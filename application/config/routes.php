@@ -52,3 +52,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['api/data'] = "welcome/pagination";
+$route['api/data/(:any)'] = "welcome/pagination/$1";
+$route['api/data/(:any)/(:any)'] = "welcome/pagination/$1/$2";
+
+$route['api/put/(:any)'] = "welcome/insert/$1";
+
+$route['api/get/(:any)'] = "welcome/select/$1";
+$route['api/get/(:any)/(:any)'] = "welcome/select/$1/$2";
+
+$route['api/edit/(:any)'] = "welcome/update/$1";
+$route['api/edit/(:any)/(:any)'] = "welcome/update/$1/$2";
+
+$route['api/remove/(:any)'] = "welcome/delete/$1";
+$route['api/remove/(:any)/(:any)'] = "welcome/delete/$1/$2";
+
+// $route['api/html'] = "MainHtml/loadDataToHtml";
+// $route['api/html/(:any)'] = "MainHtml/loadDataToHtml/$1";
+
+$route['(:any)'] = "welcome/controlPage/$1";
+$route['(:any)/(:any)'] = "welcome/welcome/$1/$2";
+
+
