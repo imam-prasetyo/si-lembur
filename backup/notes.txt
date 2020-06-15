@@ -1,2 +1,0 @@
-*.css = file untuk tampilan template
-*.js = file untuk javascript
