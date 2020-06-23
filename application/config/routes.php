@@ -58,13 +58,11 @@ $route['ctrl'] = "ctrl";
 $route['ctrl/login'] = "ctrl/login";
 $route['ctrl/logout'] = "ctrl/logout";
 
+$route['ctrl/dashboard'] = "boxing/Dashboard";
+
 $route['ctrl/activity-log'] = "boxing/ActivityLog";
 $route['ctrl/activity-log/(:any)'] = "boxing/ActivityLog/$1";
 $route['ctrl/activity-log/(:any)/(:any)'] = "boxing/ActivityLog/$1/$2";
-
-$route['ctrl/category'] = "boxing/Category";
-$route['ctrl/category/(:any)'] = "boxing/Category/$1";
-$route['ctrl/category/(:any)/(:any)'] = "boxing/Category/$1/$2";
 
 $route['ctrl/change-password'] = "boxing/ChangePassword";
 $route['ctrl/change-password/update-password'] = "boxing/ChangePassword/update_password";
@@ -73,23 +71,25 @@ $route['ctrl/configuration'] = "boxing/Configuration";
 $route['ctrl/configuration/(:any)'] = "boxing/Configuration/$1";
 $route['ctrl/configuration/(:any)/(:any)'] = "boxing/Configuration/$1/$2";
 
-$route['ctrl/dashboard'] = "boxing/Dashboard";
-
-$route['ctrl/entry'] = "boxing/Entry";
-$route['ctrl/entry/(:any)'] = "boxing/Entry/$1";
-$route['ctrl/entry/(:any)/(:any)'] = "boxing/Entry/$1/$2";
-
 $route['ctrl/profile'] = "boxing/Profile";
 $route['ctrl/profile/update-profile'] = "boxing/Profile/update_profile";
-
-$route['ctrl/tag'] = "boxing/Tag";
-$route['ctrl/tag/(:any)'] = "boxing/Tag/$1";
-$route['ctrl/tag/(:any)/(:any)'] = "boxing/Tag/$1/$2";
 
 $route['ctrl/user'] = "boxing/User";
 $route['ctrl/user/(:any)'] = "boxing/User/$1";
 $route['ctrl/user/(:any)/(:any)'] = "boxing/User/$1/$2";
 
-/** Common */
-$route['blog-post'] = "common/page/blog-post";
-$route['blog-detail/(:any)'] = "common/page/blog-detail/$1";
+$route['ctrl/divisi'] = "boxing/Divisi";
+$route['ctrl/divisi/(:any)'] = "boxing/Divisi/$1";
+$route['ctrl/divisi/(:any)/(:any)'] = "boxing/Divisi/$1/$2";
+
+$route['ctrl/unit'] = "boxing/Unit";
+$route['ctrl/unit/(:any)'] = "boxing/Unit/$1";
+$route['ctrl/unit/(:any)/(:any)'] = "boxing/Unit/$1/$2";
+
+$route['ctrl/pegawai'] = "boxing/Pegawai";
+$route['ctrl/pegawai/(:any)'] = "boxing/Pegawai/$1";
+$route['ctrl/pegawai/(:any)/(:any)'] = "boxing/Pegawai/$1/$2";
+
+$route['html'] = "boxing/JsonDataTable";
+$route['html/load'] = "boxing/JsonDataTable/loadDataToHtml";
+$route['html/load/(:any)'] = "boxing/JsonDataTable/loadDataToHtml/$1";

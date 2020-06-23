@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" type="image/icon" href="<?= base_url(); ?>img/ico/logo_ubuntu_22359.ico"/>
+        <link rel="shortcut icon" type="image/icon" href="<?= base_url(); ?>img/ico/favicon.ico"/>
         <title><?= $data["config_web"]["title_tab"]." | ".$data["title"]; ?></title>
         <!-- Bootstrap core CSS -->
         <link href="<?= base_url(); ?>assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -19,9 +19,9 @@
 
     <body>
         <!-- Navigation -->
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-success fixed-top">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="<?= base_url(); ?>"><?= $data["config_web"]["title"]; ?> | <?= $data["title"]; ?></a>
+                <a class="navbar-brand" href="<?= base_url(); ?>"><img src="<?= base_url('img/logo/site/small/default.png'); ?>" /> | <?= $data["config_web"]["title"]; ?></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,6 +29,9 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url(); ?>">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= base_url(); ?>">Overtime</a>
                         </li>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,6 +100,8 @@
             <h1 class="mt-4 mb-3">
                 <!-- <small>Subheading</small> -->
             </h1>
+
+            <br>
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">

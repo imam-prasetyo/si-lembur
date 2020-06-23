@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" type="image/icon" href="<?= base_url("img/ico/logo_ubuntu_22359.ico"); ?>"/>
+        <link rel="shortcut icon" type="image/icon" href="<?= base_url("img/ico/favicon.ico"); ?>"/>
         <title><?= $data["config_web"]["title_tab"]." | ".$data["title"]; ?></title>
 
         <!-- Page level plugin CSS-->
