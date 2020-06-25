@@ -66,6 +66,12 @@ class JsonDataTable extends CI_Controller {
                     $output["key"] = $field;
                     $output["html"] = $this->_dataLoad("t_pegawai", "id", $field, $condition, 0);
                     break;
+                case "jabatan";
+                    $condition = $conditions;
+                    $field = array("id", "jabatan");
+                    $output["key"] = $field;
+                    $output["html"] = $this->_dataLoad("t_jabatan", "id", $field, $condition, 0);
+                    break;
             }
         }
         return $this->output

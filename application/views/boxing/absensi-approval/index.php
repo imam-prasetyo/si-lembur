@@ -9,55 +9,7 @@
             $('.form-group').removeClass('has-error'); // clear error class
             $('.help-block').empty(); // clear error string
             $('#ModalAdd').modal('show');
-            populateJabatan('#txtIdJabatan', null, null);
             populateDivisi('#txtIdDivisi', null, null);
-        }
-
-        function populateJabatan(htmlInput="", id=null, conditions=null) {
-            var params = {};
-            // Set parameter conditions
-            if(conditions != null) {
-                var lenconditions = Object.keys(conditions).length;
-                if(lenconditions > 0) {
-                    var fk = Object.keys(conditions);
-                    var i = 0;
-                    for (key of fk) {
-                        var valueAtIndex = conditions[key];
-                        params[key] = valueAtIndex;
-                    }
-                }
-            }
-            // Reset html
-            $(htmlInput).empty();
-            //Ajax Load data from ajax
-            $.ajax({
-                url : "<?php echo base_url("html/load/jabatan"); ?>",
-                type: "POST",
-                data: params,
-                dataType: "JSON",
-                success: function(data) {
-                    //get length of key data
-                    var lenField = data.key.length;
-                    // set html data
-                    $('<option>').appendTo(htmlInput).attr({
-                        "value" : ""
-                    });
-                    $.each(data.html, function(index) {	
-                        if(id == null) {
-                            $('<option>').text(data.html[index][data.key[1]]).appendTo(htmlInput).attr({
-                                "value" : data.html[index][data.key[0]]
-                            });
-                        } else {
-                            $('<option>').text(data.html[index][data.key[1]]).appendTo(htmlInput).attr({
-                                "value" : data.html[index][data.key[0]]
-                                ,"selected" : (data.html[index][data.key[0]] == id ? true : false)
-                            });
-                        }
-                    });
-                }, error: function (jqXHR, textStatus, errorThrown) {
-                    alert('Error get data from ajax');
-                }
-            });
         }
 
         function populateDivisi(htmlInput="", id=null, conditions=null) {
@@ -168,10 +120,9 @@
                 "deferRender": true,
                 "aLengthMenu": [[10, 25, 50],[10, 25, 50]],
                 "columns": [
-                    { "data": "nama_pegawai" }
+                    { "data": "divisi" }
                     ,{ "data": "npp" }
-                    ,{ "data": "unit" }
-                    ,{ "data": "jabatan" }
+                    ,{ "data": "nama_pegawai" }
                     ,{ "render": function ( data, type, row) {
                             var html  = "<a class='btn btn-warning btn-sm item_edit' href='javascript:void(0);' id = '" + row.id + "' name = '" + row.id + "' rel = '" + row.id + "'><span class='fas fa-edit'></span></a> "
                             html += "<a class='btn btn-danger btn-sm item_delete' href='javascript:void(0);' id = '" + row.id + "' name = '" + row.id +"' rel = '" + row.id + "'><span class='fas fa-trash'></span></a>"
@@ -204,7 +155,6 @@
                                 $('[name="'+data.error_input[i]+'"]').next().text(data.error_string[i]);
                             }
                         } else {
-                            $('[name="txtIdJabatan"]').val("");
                             $('[name="txtIdUnit"]').val("");
                             $('[name="txtNpp"]').val("");
                             $('[name="txtNamaPegawai"]').val("");
@@ -245,7 +195,6 @@
                         $('#ModalUpdate #frmUpdate .help-block').empty(); // clear error string
                         $('[name="txtIdUpdate"]').val(data.result.id);
                         $('[name="txtCurrentNppUpdate"]').val(data.result.npp);
-                        populateJabatan('#txtIdJabatanUpdate', data.result.id_jabatan, null);
                         populateDivisi('#txtIdDivisiUpdate', data.result.id_divisi, null);
                         populateUnit("#txtIdUnitUpdate", data.result.id_unit, {"id_divisi" : data.result.id_divisi});
                         $('[name="txtNppUpdate"]').val(data.result.npp);
@@ -285,7 +234,6 @@
                             $('#ModalUpdate #frmUpdate .help-block').empty(); // clear error string
                             $('[name="txtIdUpdate"]').val("");
                             $('[name="txtCurrentNppUpdate"]').val("");
-                            $('[name="txtIdJabatanUpdate"]').val("");
                             $('[name="txtIdDivisiUpdate"]').val("");
                             $('[name="txtUnitUpdate"]').val("");
                             $('[name="txtNppUpdate"]').val("");
@@ -379,15 +327,6 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Jabatan</label>
-                                    <div class="col-md-10">
-                                        <select class="form-control" id="txtIdJabatan" name="txtIdJabatan" placeholder="Show"></select>
-                                        <small class="text-danger">
-                                            <span class="help-block"></span>
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Divisi</label>
                                     <div class="col-md-10">
                                         <select class="form-control" id="txtIdDivisi" name="txtIdDivisi" placeholder="Show"></select>
@@ -448,15 +387,6 @@
                             <div class="modal-body">
                                 <input type="hidden" value="" name="txtIdUpdate"/>
                                 <input type="hidden" value="" name="txtCurrentNppUpdate"/>
-                                <div class="form-group row">
-                                    <label class="col-md-2 col-form-label">Jabatan</label>
-                                    <div class="col-md-10">
-                                        <select class="form-control" id="txtIdJabatanUpdate" name="txtIdJabatanUpdate" placeholder="Show"></select>
-                                        <small class="text-danger">
-                                            <span class="help-block"></span>
-                                        </small>
-                                    </div>
-                                </div>
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Divisi</label>
                                     <div class="col-md-10">

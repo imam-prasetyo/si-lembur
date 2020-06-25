@@ -305,7 +305,7 @@ class Divisi extends CI_Controller {
 				
 				$this->PublicModel->update_query("t_divisi", "id", $txtIdUpdate, $input);
 
-				$message = "Update user succcessfully!";
+				$message = "Update divisi succcessfully!";
 			}
 		} catch (Exception $e) {
 			$output['error_status'] = true;

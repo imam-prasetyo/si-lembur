@@ -2,18 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Pegawai.php
+ * Jabatan.php
  *
  * Controller
  *
  * @category   Controller
- * @package    Pegawai
+ * @package    Jabatan
  * @author     Chandra Nala Budi Satria
  * @copyright  dev.nalachandra@gmail.com
  * @since      2020
  */
 
-class Pegawai extends CI_Controller {
+class Jabatan extends CI_Controller {
 
 	/**
 	 * @method __construct
@@ -71,7 +71,7 @@ class Pegawai extends CI_Controller {
 		$data["data"] = $data;
 
 		/** load data to view */
-		$this->load->view('boxing/pegawai/index', $data);
+		$this->load->view('boxing/jabatan/index', $data);
 	}
 
 	/**
@@ -98,8 +98,8 @@ class Pegawai extends CI_Controller {
 	 */
 	private function _getRow() {
 		/** set data table */
-		$dataTable = "vw_pegawai_unit";
-		$dataRow = array("id", "nama_pegawai", "npp", "unit", "jabatan");
+		$dataTable = "t_jabatan";
+		$dataRow = array("id", "jabatan");
 		$dataRowKey = array_splice($dataRow, 0, 1);
 		$dataHeader = $dataRow;
 		$dataCondition = array();
@@ -202,43 +202,28 @@ class Pegawai extends CI_Controller {
 		
 		try {
 			/** set validation rules */
-			$this->form_validation->set_rules("txtIdJabatan", "Unit", "trim|required");
-			$this->form_validation->set_rules("txtIdUnit", "Unit", "trim|required");
-			$this->form_validation->set_rules("txtNPP", "NPP", "trim|required|min_length[5]|numeric|is_unique[t_pegawai.npp]");
-			$this->form_validation->set_rules("txtNamaPegawai", "Nama Pegawai", "trim|required|min_length[4]");
-
+			$this->form_validation->set_rules("txtJabatan", "Jabatan", "trim|required|is_unique[t_jabatan.jabatan]");
+			
 			/** set error delimiter */
 			$this->form_validation->set_error_delimiters('', '');
 
 			/** run validation */
 			if (!$this->form_validation->run()) {
 				$output['error_status'] = true;
-				$output["error_input"][] = "txtIdJabatan";
-				$output["error_string"][] = form_error('txtIdJabatan');
-				$output["error_input"][] = "txtIdUnit";
-				$output["error_string"][] = form_error('txtIdUnit');
-				$output["error_input"][] = "txtNPP";
-				$output["error_string"][] = form_error('txtNPP');
-				$output["error_input"][] = "txtNamaPegawai";
-				$output["error_string"][] = form_error('txtNamaPegawai');
+				$output["error_input"][] = "txtJabatan";
+				$output["error_string"][] = form_error('txtJabatan');
 			} else {
 				/** input post */
-				$txtIdJabatan = htmlspecialchars($this->input->post("txtIdJabatan"));
-				$txtIdUnit = htmlspecialchars($this->input->post("txtIdUnit"));
-				$txtNPP = htmlspecialchars($this->input->post("txtNPP"));
-				$txtNamaPegawai = htmlspecialchars($this->input->post("txtNamaPegawai"));
+				$txtJabatan = htmlspecialchars($this->input->post("txtJabatan"));
 			}
 
 			if(!$output['error_status']) {
 				/** field insert */
-				$input["id_jabatan"] = $txtIdJabatan;
-				$input["id_unit"] = $txtIdUnit;
-				$input["npp"] = $txtNPP;
-				$input["nama_pegawai"] = $txtNamaPegawai;
+				$input['jabatan'] = $txtJabatan;
 
-				$this->PublicModel->insert_query("t_pegawai", $input);
+				$this->PublicModel->insert_query("t_jabatan", $input);
 
-				$message = "Create pegawai succcessfully!";
+				$message = "Create jabatan succcessfully!";
 			}
 		} catch (Exception $e) {
 			$output['error_status'] = false;
@@ -247,8 +232,8 @@ class Pegawai extends CI_Controller {
 		}
 
 		/** set log */
-		activityLog(getLoggedInUserDb()['id'], "create pegawai", "create pegawai : ".$input['id'] . " " .$input["npp"]
-			, $message, getLoggedInUserDb()['id'], "create pegawai");
+		activityLog(getLoggedInUserDb()['id'], "create jabatan", "create jabatan : ".$input['id'] . " " .$input["jabatan"]
+			, $message, getLoggedInUserDb()['id'], "create jabatan");
 
 		/* return json */
 		$this->output
@@ -264,7 +249,7 @@ class Pegawai extends CI_Controller {
 		$output['error_status'] = false;
 		try {
 			/** query select */
-			$query = $this->PublicModel->get_data_by_condition(array(), "vw_pegawai_unit_divisi", array()
+			$query = $this->PublicModel->get_data_by_condition(array(), "t_jabatan", array()
 				, array("id = '".$id."'"), "AND", array()
 				, 0);
 
@@ -298,10 +283,7 @@ class Pegawai extends CI_Controller {
 		
 		try {
 			/** set validation rules */
-			$this->form_validation->set_rules("txtIdJabatanUpdate", "Unit", "trim|required");
-			$this->form_validation->set_rules("txtIdUnitUpdate", "Unit", "trim|required");
-			$this->form_validation->set_rules("txtNppUpdate", "NPP", "trim|required|min_length[5]|numeric|callback_npp_update_check");
-			$this->form_validation->set_rules("txtNamaPegawaiUpdate", "Nama Pegawai", "trim|required|min_length[4]");
+			$this->form_validation->set_rules("txtJabatanUpdate", "Jabatan", "trim|required|callback_jabatan_update_check");
 			
 			/** set error delimiter */
 			$this->form_validation->set_error_delimiters('', '');
@@ -309,33 +291,21 @@ class Pegawai extends CI_Controller {
 			/** run validation */
 			if (!$this->form_validation->run()) {
 				$output['error_status'] = true;
-				$output["error_input"][] = "txtIdJabatanUpdate";
-				$output["error_string"][] = form_error('txtIdJabatanUpdate');
-				$output["error_input"][] = "txtIdUnitUpdate";
-				$output["error_string"][] = form_error('txtIdUnitUpdate');
-				$output["error_input"][] = "txtNppUpdate";
-				$output["error_string"][] = form_error('txtNppUpdate');
-				$output["error_input"][] = "txtNamaPegawaiUpdate";
-				$output["error_string"][] = form_error('txtNamaPegawaiUpdate');
+				$output["error_input"][] = "txtJabatanUpdate";
+				$output["error_string"][] = form_error('txtJabatanUpdate');
 			} else {
 				/** input post */
 				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtIdJabatanUpdate = htmlspecialchars($this->input->post("txtIdJabatanUpdate"));
-				$txtIdUnitUpdate = htmlspecialchars($this->input->post("txtIdUnitUpdate"));
-				$txtNppUpdate = htmlspecialchars($this->input->post("txtNppUpdate"));
-				$txtNamaPegawaiUpdate = htmlspecialchars($this->input->post("txtNamaPegawaiUpdate"));
+				$txtJabatanUpdate = htmlspecialchars($this->input->post("txtJabatanUpdate"));
 			}
 
 			if(!$output['error_status']) {
 				/** field update */
-				$input["id_jabatan"] = $txtIdJabatanUpdate;
-				$input["id_unit"] = $txtIdUnitUpdate;
-				$input["npp"] = $txtNppUpdate;
-				$input["nama_pegawai"] = $txtNamaPegawaiUpdate;
+				$input["jabatan"] = $txtJabatanUpdate;
 				
-				$this->PublicModel->update_query("t_pegawai", "id", $txtIdUpdate, $input);
+				$this->PublicModel->update_query("t_jabatan", "id", $txtIdUpdate, $input);
 
-				$message = "Update pegawai succcessfully!";
+				$message = "Update jabatan succcessfully!";
 			}
 		} catch (Exception $e) {
 			$output['error_status'] = true;
@@ -344,8 +314,8 @@ class Pegawai extends CI_Controller {
 		}
 		
 		/** set log */
-		activityLog(getLoggedInUserDb()['id'], "update pegawai", "update pegawai : ".$txtIdUpdate . " " .$input["npp"]
-			, $message, getLoggedInUserDb()['id'], "update pegawai");
+		activityLog(getLoggedInUserDb()['id'], "update jabatan", "update jabatan : ".$txtIdUpdate . " " .$input["jabatan"]
+			, $message, getLoggedInUserDb()['id'], "update jabatan");
 
 		/* return json */
 		$this->output
@@ -365,19 +335,19 @@ class Pegawai extends CI_Controller {
 
 		try {
 			/** get data */ 
-			// $selected = $this->PublicModel->get_data_by_id(array(), "t_user", "id"
+			// $selected = $this->PublicModel->get_data_by_id(array(), "t_divisi", "id"
 			// 	, $txtIdDelete);
 
-			$dataInUsed = $this->PublicModel->get_data_by_id(array(), "t_trx_lembur", "id_pegawai"
+			$dataInUsed = $this->PublicModel->get_data_by_id(array(), "t_pegawai", "id_jabatan"
 				, $txtIdDelete);
 			if(count($dataInUsed) > 0) {
 				$output['error_status'] = true;
 				$output['error_string'] = getErrorCode("023", "", "");
 			} else {
 				$condition[] = "id = '".$txtIdDelete."'";
-				$this->PublicModel->delete_query("t_pegawai", $condition, $operand);
+				$this->PublicModel->delete_query("t_jabatan", $condition, $operand);
 
-				$message = "Delete pegawai succcessfully!";
+				$message = "Delete jabatan succcessfully!";
 			}
 		} catch (Exception $e) {
 			$output['error_status'] = true;
@@ -385,8 +355,8 @@ class Pegawai extends CI_Controller {
 		}
 
 		/** set log */
-		activityLog(getLoggedInUserDb()['id'], "delete pegawai", "delete pegawai : ".$txtIdDelete
-			, $message, getLoggedInUserDb()['id'], "delete pegawai");
+		activityLog(getLoggedInUserDb()['id'], "delete jabatan", "delete jabatan : ".$txtIdDelete
+			, $message, getLoggedInUserDb()['id'], "delete jabatan");
 
 		/* return json */
 		$this->output
@@ -395,22 +365,22 @@ class Pegawai extends CI_Controller {
 	}
 
 	/**
-	 * @method npp_update_check
+	 * @method jabatan_update_check
 	 */
-	public function npp_update_check() {
-		$txtNppUpdate = htmlspecialchars($this->input->post('txtNppUpdate', true));
-		$txtCurrentNppUpdate = htmlspecialchars($this->input->post('txtCurrentNppUpdate', true));
-		if ($txtNppUpdate == $txtCurrentNppUpdate) {
+	public function jabatan_update_check() {
+		$txtJabatanUpdate = htmlspecialchars($this->input->post('txtJabatanUpdate', true));
+		$txtCurrentJabatanUpdate = htmlspecialchars($this->input->post('txtCurrentJabatanUpdate', true));
+		if ($txtJabatanUpdate == $txtCurrentJabatanUpdate) {
 			return true;
 		} else {
 			/** query select */
-			$query = $this->PublicModel->get_data_by_id(array(), "t_pegawai", "npp"
-				, htmlspecialchars($this->input->post("txtNppUpdate")));
+			$query = $this->PublicModel->get_data_by_id(array(), "t_jabatan", "jabatan"
+				, htmlspecialchars($this->input->post("txtJabatanUpdate")));
 
 			if(count($query) <= 0) {
 				return true;
 			} else {
-				$this->form_validation->set_message('npp_update_check', 'NPP already registered.');
+				$this->form_validation->set_message('jabatan_update_check', 'Jabatan already registered.');
 				return false;
 			};
 		}
@@ -418,5 +388,5 @@ class Pegawai extends CI_Controller {
 
 }
 
-/* End of file Pegawai.php */
-/* Location: ./application/controllers/boxing/Pegawai.php */
+/* End of file Jabatan.php */
+/* Location: ./application/controllers/boxing/Jabatan.php */

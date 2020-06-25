@@ -90,6 +90,18 @@ $route['ctrl/pegawai'] = "boxing/Pegawai";
 $route['ctrl/pegawai/(:any)'] = "boxing/Pegawai/$1";
 $route['ctrl/pegawai/(:any)/(:any)'] = "boxing/Pegawai/$1/$2";
 
+$route['ctrl/jabatan'] = "boxing/Jabatan";
+$route['ctrl/jabatan/(:any)'] = "boxing/Jabatan/$1";
+$route['ctrl/jabatan/(:any)/(:any)'] = "boxing/Jabatan/$1/$2";
+
+$route['ctrl/absensi-approval'] = "boxing/AbsensiApproval";
+$route['ctrl/absensi-approval/(:any)'] = "boxing/AbsensiApproval/$1";
+$route['ctrl/absensi-approval/(:any)/(:any)'] = "boxing/AbsensiApproval/$1/$2";
+
+$route['ctrl/absensi-overtime'] = "boxing/AbsensiOvertime";
+$route['ctrl/absensi-overtime/(:any)'] = "boxing/AbsensiOvertime/$1";
+$route['ctrl/absensi-overtime/(:any)/(:any)'] = "boxing/AbsensiOvertime/$1/$2";
+
 $route['html'] = "boxing/JsonDataTable";
 $route['html/load'] = "boxing/JsonDataTable/loadDataToHtml";
 $route['html/load/(:any)'] = "boxing/JsonDataTable/loadDataToHtml/$1";

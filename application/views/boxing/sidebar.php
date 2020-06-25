@@ -23,7 +23,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseuser">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
                     <i class="fas fa-user"></i>
                         <span>User</span>
                     </a>
@@ -51,14 +51,31 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseusers">
-                    <i class="fas fa-users"></i>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePegawai" aria-expanded="true" aria-controls="collapsePegawai">
+                    <i class="fa fa-child"></i>
                         <span>Pegawai</span>
                     </a>
-                    <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+                    <div id="collapsePegawai" class="collapse" aria-labelledby="headingPegawai" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Pegawai</h6>
                             <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/pegawai"); ?>">Pegawai</a>
+                            <h6 class="collapse-header">Struktur</h6>
+                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/jabatan"); ?>">Jabatan</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAbsensi" aria-expanded="true" aria-controls="collapseAbsensi">
+                    <i class="fa fa-database"></i>
+                        <span>Absensi</span>
+                    </a>
+                    <div id="collapseAbsensi" class="collapse" aria-labelledby="headingAbsensi" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Approval</h6>
+                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-approval"); ?>">Approval</a>
+                            <h6 class="collapse-header">Overtime</h6>
+                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-overtime"); ?>">Overtime / Lembur</a>
                         </div>
                     </div>
                 </li>
