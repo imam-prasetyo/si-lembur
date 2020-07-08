@@ -10,18 +10,25 @@
         <title><?= $data["config_web"]["title_tab"]." | ".$data["title"]; ?></title>
         <!-- Bootstrap core CSS -->
         <link href="<?= base_url(); ?>assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="<?= base_url("assets/vendor/fontawesome-free/css/all.min.css"); ?>" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="<?= base_url(); ?>assets/css/modern-business.css" rel="stylesheet">
+        <link href="<?= base_url("assets/vendor/datatables/dataTables.bootstrap4.css"); ?>" rel="stylesheet">
+        <link href="<?= base_url("assets/vendor/gijgo/css/gijgo.min.css"); ?>" rel="stylesheet">
         <!-- Bootstrap core JavaScript -->
         <script src="<?= base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
         <script src="<?= base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="<?= base_url("assets/vendor/datatables/jquery.dataTables.js"); ?>"></script>
+        <script src="<?= base_url("assets/vendor/datatables/dataTables.bootstrap4.js"); ?>"></script>
+        <script src="<?= base_url("assets/vendor/gijgo/js/gijgo.min.js"); ?>"></script>
     </head>
 
     <body>
         <!-- Navigation -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="<?= base_url(); ?>"><img src="<?= base_url('img/logo/site/small/default.png'); ?>" /> | <?= $data["config_web"]["title"]; ?></a>
+                <a class="navbar-brand" href="<?= base_url(); ?>"><img src="<?= base_url('img/logo/site/small/default.png'); ?>" /> <?= $data["config_web"]["title"]; ?></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -31,7 +38,7 @@
                             <a class="nav-link" href="<?= base_url(); ?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>">Overtime</a>
+                            <a class="nav-link" href="<?= base_url("overtime"); ?>">Overtime</a>
                         </li>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

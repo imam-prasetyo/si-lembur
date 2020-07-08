@@ -52,25 +52,31 @@ class JsonDataTable extends CI_Controller {
                     $condition = $conditions;
                     $field = array("id", "divisi");
                     $output["key"] = $field;
-                    $output["html"] = $this->_dataLoad("t_divisi", "id", $field, $condition, 0);
+                    $output["html"] = $this->_dataLoad("t_divisi", "id", $field, $condition, "AND", 0);
                     break;
                 case "unit";
                     $condition = $conditions;
                     $field = array("id", "unit");
                     $output["key"] = $field;
-                    $output["html"] = $this->_dataLoad("t_unit", "id", $field, $condition, 0);
+                    $output["html"] = $this->_dataLoad("t_unit", "id", $field, $condition, "AND", 0);
                     break;
                 case "pegawai";
                     $condition = $conditions;
                     $field = array("id", "npp", "nama_pegawai");
                     $output["key"] = $field;
-                    $output["html"] = $this->_dataLoad("t_pegawai", "id", $field, $condition, 0);
+                    $output["html"] = $this->_dataLoad("t_pegawai", "id", $field, $condition, "AND", 0);
+                    break;
+                case "pegawai-absensi-approval";
+                    $condition = $conditions;
+                    $field = array("id", "npp", "nama_pegawai");
+                    $output["key"] = $field;
+                    $output["html"] = $this->_dataLoad("vw_pegawai_absensi_approval", "id", $field, $condition, "AND", 0);
                     break;
                 case "jabatan";
                     $condition = $conditions;
                     $field = array("id", "jabatan");
                     $output["key"] = $field;
-                    $output["html"] = $this->_dataLoad("t_jabatan", "id", $field, $condition, 0);
+                    $output["html"] = $this->_dataLoad("t_jabatan", "id", $field, $condition, "AND", 0);
                     break;
             }
         }
@@ -88,9 +94,9 @@ class JsonDataTable extends CI_Controller {
      * @param string @limit limit data
      * @return array Return data array
      */
-    private function _dataLoad($tableName=null, $dataRowKey=null, $field=null, $condition=null, $limit=0) {
+    private function _dataLoad($tableName=null, $dataRowKey=null, $field=null, $condition=null, $operand=null, $limit=0) {
         $join = array();
-        $operand = "AND";
+        // $operand = "AND";
         $orderBy = array();
         $limit = 0;
         $orderBy[] = $dataRowKey."|ASC";

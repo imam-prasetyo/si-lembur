@@ -105,3 +105,7 @@ $route['ctrl/absensi-overtime/(:any)/(:any)'] = "boxing/AbsensiOvertime/$1/$2";
 $route['html'] = "boxing/JsonDataTable";
 $route['html/load'] = "boxing/JsonDataTable/loadDataToHtml";
 $route['html/load/(:any)'] = "boxing/JsonDataTable/loadDataToHtml/$1";
+
+$route['overtime'] = "Overtime";
+$route['overtime/(:any)'] = "Overtime/$1";
+$route['overtime/(:any)/(:any)'] = "Overtime/$1/$2";

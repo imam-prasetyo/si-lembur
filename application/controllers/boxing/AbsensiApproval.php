@@ -202,9 +202,8 @@ class AbsensiApproval extends CI_Controller {
 		
 		try {
 			/** set validation rules */
-			$this->form_validation->set_rules("txtIdUnit", "Unit", "trim|required");
-			$this->form_validation->set_rules("txtNPP", "NPP", "trim|required|min_length[5]|numeric|is_unique[t_pegawai.npp]");
-			$this->form_validation->set_rules("txtNamaPegawai", "Nama Pegawai", "trim|required|min_length[4]");
+			$this->form_validation->set_rules("txtIdDivisi", "Divisi", "trim|required");
+			$this->form_validation->set_rules("txtIdPegawai", "Pegawai", "trim|required");
 
 			/** set error delimiter */
 			$this->form_validation->set_error_delimiters('', '');
@@ -212,28 +211,24 @@ class AbsensiApproval extends CI_Controller {
 			/** run validation */
 			if (!$this->form_validation->run()) {
 				$output['error_status'] = true;
-				$output["error_input"][] = "txtIdUnit";
-				$output["error_string"][] = form_error('txtIdUnit');
-				$output["error_input"][] = "txtNPP";
-				$output["error_string"][] = form_error('txtNPP');
-				$output["error_input"][] = "txtNamaPegawai";
-				$output["error_string"][] = form_error('txtNamaPegawai');
+				$output["error_input"][] = "txtIdDivisi";
+				$output["error_string"][] = form_error('txtIdDivisi');
+				$output["error_input"][] = "txtIdPegawai";
+				$output["error_string"][] = form_error('txtIdPegawai');
 			} else {
 				/** input post */
-				$txtIdUnit = htmlspecialchars($this->input->post("txtIdUnit"));
-				$txtNPP = htmlspecialchars($this->input->post("txtNPP"));
-				$txtNamaPegawai = htmlspecialchars($this->input->post("txtNamaPegawai"));
+				$txtIdDivisi = htmlspecialchars($this->input->post("txtIdDivisi"));
+				$txtIdPegawai = htmlspecialchars($this->input->post("txtIdPegawai"));
 			}
 
 			if(!$output['error_status']) {
 				/** field insert */
-				$input["id_unit"] = $txtIdUnit;
-				$input["npp"] = $txtNPP;
-				$input["nama_pegawai"] = $txtNamaPegawai;
+				$input["id_divisi"] = $txtIdDivisi;
+				$input["id_pegawai"] = $txtIdPegawai;
 
-				$this->PublicModel->insert_query("t_pegawai", $input);
+				$this->PublicModel->insert_query("t_absensi_approval", $input);
 
-				$message = "Create pegawai succcessfully!";
+				$message = "Create pegawai absensi approval succcessfully!";
 			}
 		} catch (Exception $e) {
 			$output['error_status'] = false;
@@ -242,8 +237,8 @@ class AbsensiApproval extends CI_Controller {
 		}
 
 		/** set log */
-		activityLog(getLoggedInUserDb()['id'], "create pegawai", "create pegawai : ".$input['id'] . " " .$input["npp"]
-			, $message, getLoggedInUserDb()['id'], "create pegawai");
+		activityLog(getLoggedInUserDb()['id'], "create pegawai absensi approval", "create pegawai absensi approval : ".$input['id']." " .$input["id_divisi"]." ".$input["id_pegawai"]
+			, $message, getLoggedInUserDb()['id'], "create pegawai absensi approval");
 
 		/* return json */
 		$this->output
@@ -259,7 +254,7 @@ class AbsensiApproval extends CI_Controller {
 		$output['error_status'] = false;
 		try {
 			/** query select */
-			$query = $this->PublicModel->get_data_by_condition(array(), "vw_pegawai_unit_divisi", array()
+			$query = $this->PublicModel->get_data_by_condition(array(), "t_absensi_approval", array()
 				, array("id = '".$id."'"), "AND", array()
 				, 0);
 
@@ -293,9 +288,8 @@ class AbsensiApproval extends CI_Controller {
 		
 		try {
 			/** set validation rules */
-			$this->form_validation->set_rules("txtIdUnitUpdate", "Unit", "trim|required");
-			$this->form_validation->set_rules("txtNppUpdate", "NPP", "trim|required|min_length[5]|numeric|callback_npp_update_check");
-			$this->form_validation->set_rules("txtNamaPegawaiUpdate", "Nama Pegawai", "trim|required|min_length[4]");
+			$this->form_validation->set_rules("txtIdDivisiUpdate", "Divisi", "trim|required");
+			$this->form_validation->set_rules("txtIdPegawaiUpdate", "Pegawai", "trim|required");
 			
 			/** set error delimiter */
 			$this->form_validation->set_error_delimiters('', '');
@@ -303,29 +297,25 @@ class AbsensiApproval extends CI_Controller {
 			/** run validation */
 			if (!$this->form_validation->run()) {
 				$output['error_status'] = true;
-				$output["error_input"][] = "txtIdUnitUpdate";
-				$output["error_string"][] = form_error('txtIdUnitUpdate');
-				$output["error_input"][] = "txtNppUpdate";
-				$output["error_string"][] = form_error('txtNppUpdate');
-				$output["error_input"][] = "txtNamaPegawaiUpdate";
-				$output["error_string"][] = form_error('txtNamaPegawaiUpdate');
+				$output["error_input"][] = "txtIdDivisiUpdate";
+				$output["error_string"][] = form_error('txtIdDivisiUpdate');
+				$output["error_input"][] = "txtIdPegawaiUpdate";
+				$output["error_string"][] = form_error('txtIdPegawaiUpdate');
 			} else {
 				/** input post */
 				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtIdUnitUpdate = htmlspecialchars($this->input->post("txtIdUnitUpdate"));
-				$txtNppUpdate = htmlspecialchars($this->input->post("txtNppUpdate"));
-				$txtNamaPegawaiUpdate = htmlspecialchars($this->input->post("txtNamaPegawaiUpdate"));
+				$txtIdDivisiUpdate = htmlspecialchars($this->input->post("txtIdDivisiUpdate"));
+				$txtIdPegawaiUpdate = htmlspecialchars($this->input->post("txtIdPegawaiUpdate"));
 			}
 
 			if(!$output['error_status']) {
 				/** field update */
-				$input["id_unit"] = $txtIdUnitUpdate;
-				$input["npp"] = $txtNppUpdate;
-				$input["nama_pegawai"] = $txtNamaPegawaiUpdate;
+				$input["id_divisi"] = $txtIdDivisiUpdate;
+				$input["id_pegawai"] = $txtIdPegawaiUpdate;
 				
-				$this->PublicModel->update_query("t_pegawai", "id", $txtIdUpdate, $input);
+				$this->PublicModel->update_query("t_absensi_approval", "id", $txtIdUpdate, $input);
 
-				$message = "Update pegawai succcessfully!";
+				$message = "Update pegawai absensi approval succcessfully!";
 			}
 		} catch (Exception $e) {
 			$output['error_status'] = true;
@@ -334,8 +324,8 @@ class AbsensiApproval extends CI_Controller {
 		}
 		
 		/** set log */
-		activityLog(getLoggedInUserDb()['id'], "update pegawai", "update pegawai : ".$txtIdUpdate . " " .$input["npp"]
-			, $message, getLoggedInUserDb()['id'], "update pegawai");
+		activityLog(getLoggedInUserDb()['id'], "update pegawai absensi approval", "update pegawai absensi approval : ".$txtIdUpdate." ".$input["id_divisi"]." ".$input["id_pegawai"]
+			, $message, getLoggedInUserDb()['id'], "update pegawai absensi approval");
 
 		/* return json */
 		$this->output
@@ -358,52 +348,30 @@ class AbsensiApproval extends CI_Controller {
 			// $selected = $this->PublicModel->get_data_by_id(array(), "t_user", "id"
 			// 	, $txtIdDelete);
 
-			$dataInUsed = $this->PublicModel->get_data_by_id(array(), "t_trx_lembur", "id_pegawai"
-				, $txtIdDelete);
-			if(count($dataInUsed) > 0) {
-				$output['error_status'] = true;
-				$output['error_string'] = getErrorCode("023", "", "");
-			} else {
+			// $dataInUsed = $this->PublicModel->get_data_by_id(array(), "t_trx_lembur", "id_pegawai"
+			// 	, $txtIdDelete);
+			// if(count($dataInUsed) > 0) {
+			// 	$output['error_status'] = true;
+			// 	$output['error_string'] = getErrorCode("023", "", "");
+			// } else {
 				$condition[] = "id = '".$txtIdDelete."'";
-				$this->PublicModel->delete_query("t_pegawai", $condition, $operand);
+				$this->PublicModel->delete_query("t_absensi_approval", $condition, $operand);
 
-				$message = "Delete pegawai succcessfully!";
-			}
+				$message = "Delete pegawai absensi approval succcessfully!";
+			// }
 		} catch (Exception $e) {
 			$output['error_status'] = true;
 			$output['error_string'] = $e->getMessage();
 		}
 
 		/** set log */
-		activityLog(getLoggedInUserDb()['id'], "delete pegawai", "delete pegawai : ".$txtIdDelete
-			, $message, getLoggedInUserDb()['id'], "delete pegawai");
+		activityLog(getLoggedInUserDb()['id'], "delete pegawai absensi approval", "delete pegawai absensi approval : ".$txtIdDelete
+			, $message, getLoggedInUserDb()['id'], "delete pegawai absensi approval");
 
 		/* return json */
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode($output));
-	}
-
-	/**
-	 * @method npp_update_check
-	 */
-	public function npp_update_check() {
-		$txtNppUpdate = htmlspecialchars($this->input->post('txtNppUpdate', true));
-		$txtCurrentNppUpdate = htmlspecialchars($this->input->post('txtCurrentNppUpdate', true));
-		if ($txtNppUpdate == $txtCurrentNppUpdate) {
-			return true;
-		} else {
-			/** query select */
-			$query = $this->PublicModel->get_data_by_id(array(), "t_pegawai", "npp"
-				, htmlspecialchars($this->input->post("txtNppUpdate")));
-
-			if(count($query) <= 0) {
-				return true;
-			} else {
-				$this->form_validation->set_message('npp_update_check', 'NPP already registered.');
-				return false;
-			};
-		}
 	}
 
 }

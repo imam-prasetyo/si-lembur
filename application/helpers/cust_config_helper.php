@@ -31,6 +31,7 @@ if (!function_exists('getConfigWebsite')) {
         $array["title"] = _getConfigByName("t_config", array("value"), array('name = "title"'));
         $array["logo"] = _getConfigByName("t_config", array("value"), array('name = "logo"'));
         $array["start_year"] = _getConfigByName("t_config", array("value"), array('name = "start_year"'));
+        $array["jam_mulai"] = _getConfigByName("t_config", array("value"), array('name = "jam_mulai"'));
 
         return $array;
     }

@@ -16,7 +16,7 @@
         <link href="<?= base_url("assets/vendor/datatables/dataTables.bootstrap4.css"); ?>" rel="stylesheet">
         <!-- Custom styles for this template-->
         <link href="<?= base_url("assets/css/sb-admin-2.css"); ?>" rel="stylesheet">
-        <link href="<?= base_url("assets/css/custom.css"); ?>" rel="stylesheet">    
+        <link href="<?= base_url("assets/css/custom.css"); ?>" rel="stylesheet">
         <!-- Summernote-->
         <link href="<?= base_url("assets/vendor/summernote/summernote-bs4.css"); ?>" rel="stylesheet">
 

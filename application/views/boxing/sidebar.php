@@ -59,8 +59,8 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Pegawai</h6>
                             <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/pegawai"); ?>">Pegawai</a>
-                            <h6 class="collapse-header">Struktur</h6>
-                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/jabatan"); ?>">Jabatan</a>
+                            <!-- <h6 class="collapse-header">Struktur</h6>
+                            <a class="collapse-item" href="<?//= base_url($data["config_web"]["admin_panel"]."/jabatan"); ?>">Jabatan</a> -->
                         </div>
                     </div>
                 </li>
