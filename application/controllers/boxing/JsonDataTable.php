@@ -21,7 +21,7 @@ class JsonDataTable extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        /** check session user login */
+        // /** check session user login */
         // if (!isLoggedInUser()) {
         //     redirect(base_url(getConfigWebsite()["admin_panel"]));
         // };

@@ -214,7 +214,7 @@ class Divisi extends CI_Controller {
 				$output["error_string"][] = form_error('txtDivisi');
 			} else {
 				/** input post */
-				$txtDivisi = htmlspecialchars($this->input->post("txtDivisi"));
+				$txtDivisi = htmlspecialchars($this->input->post("txtDivisi", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -295,8 +295,8 @@ class Divisi extends CI_Controller {
 				$output["error_string"][] = form_error('txtDivisiUpdate');
 			} else {
 				/** input post */
-				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtDivisiUpdate = htmlspecialchars($this->input->post("txtDivisiUpdate"));
+				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate", true), ENT_QUOTES);
+				$txtDivisiUpdate = htmlspecialchars($this->input->post("txtDivisiUpdate", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -327,7 +327,7 @@ class Divisi extends CI_Controller {
 	 * @method delete
 	 */
 	function delete() {
-		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete"));
+		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete", true), ENT_QUOTES);
 		$condition = array();
 		$operand = "AND";
 		$output['error_status'] = false;
@@ -368,8 +368,8 @@ class Divisi extends CI_Controller {
 	 * @method divisi_update_check
 	 */
 	public function divisi_update_check() {
-		$txtDivisiUpdate = htmlspecialchars($this->input->post('txtDivisiUpdate', true));
-		$txtCurrentDivisiUpdate = htmlspecialchars($this->input->post('txtCurrentDivisiUpdate', true));
+		$txtDivisiUpdate = htmlspecialchars($this->input->post('txtDivisiUpdate', true), ENT_QUOTES);
+		$txtCurrentDivisiUpdate = htmlspecialchars($this->input->post('txtCurrentDivisiUpdate', true), ENT_QUOTES);
 		if ($txtDivisiUpdate == $txtCurrentDivisiUpdate) {
 			return true;
 		} else {

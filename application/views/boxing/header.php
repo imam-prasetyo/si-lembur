@@ -19,6 +19,7 @@
         <link href="<?= base_url("assets/css/custom.css"); ?>" rel="stylesheet">
         <!-- Summernote-->
         <link href="<?= base_url("assets/vendor/summernote/summernote-bs4.css"); ?>" rel="stylesheet">
+        <link href="<?= base_url("assets/vendor/gijgo/css/gijgo.min.css"); ?>" rel="stylesheet">
 
         <!-- Page level plugin JavaScript-->
         <!-- Bootstrap core JavaScript-->
@@ -34,6 +35,7 @@
         <script src="<?= base_url("assets/js/custom.js"); ?>"></script>
         <!-- Summernote-->
         <script src="<?= base_url("assets/vendor/summernote/summernote-bs4.js"); ?>"></script>
+        <script src="<?= base_url("assets/vendor/gijgo/js/gijgo.min.js"); ?>"></script>
     </head>
 
     <body id="page-top">

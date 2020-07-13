@@ -223,10 +223,10 @@ class Pegawai extends CI_Controller {
 				$output["error_string"][] = form_error('txtNamaPegawai');
 			} else {
 				/** input post */
-				$txtIdJabatan = htmlspecialchars($this->input->post("txtIdJabatan"));
-				$txtIdUnit = htmlspecialchars($this->input->post("txtIdUnit"));
-				$txtNPP = htmlspecialchars($this->input->post("txtNPP"));
-				$txtNamaPegawai = htmlspecialchars($this->input->post("txtNamaPegawai"));
+				$txtIdJabatan = htmlspecialchars($this->input->post("txtIdJabatan", true), ENT_QUOTES);
+				$txtIdUnit = htmlspecialchars($this->input->post("txtIdUnit", true), ENT_QUOTES);
+				$txtNPP = htmlspecialchars($this->input->post("txtNPP", true), ENT_QUOTES);
+				$txtNamaPegawai = htmlspecialchars($this->input->post("txtNamaPegawai", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -234,6 +234,7 @@ class Pegawai extends CI_Controller {
 				$input["id_jabatan"] = $txtIdJabatan;
 				$input["id_unit"] = $txtIdUnit;
 				$input["npp"] = $txtNPP;
+				$input["password"] = password_hash(getConfigWebsiteByParam("t_config", array("value"), array('name = "password_default"')), PASSWORD_DEFAULT);
 				$input["nama_pegawai"] = $txtNamaPegawai;
 
 				$this->PublicModel->insert_query("t_pegawai", $input);
@@ -319,11 +320,12 @@ class Pegawai extends CI_Controller {
 				$output["error_string"][] = form_error('txtNamaPegawaiUpdate');
 			} else {
 				/** input post */
-				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtIdJabatanUpdate = htmlspecialchars($this->input->post("txtIdJabatanUpdate"));
-				$txtIdUnitUpdate = htmlspecialchars($this->input->post("txtIdUnitUpdate"));
-				$txtNppUpdate = htmlspecialchars($this->input->post("txtNppUpdate"));
-				$txtNamaPegawaiUpdate = htmlspecialchars($this->input->post("txtNamaPegawaiUpdate"));
+				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate", true), ENT_QUOTES);
+				$txtIdJabatanUpdate = htmlspecialchars($this->input->post("txtIdJabatanUpdate", true), ENT_QUOTES);
+				$txtIdUnitUpdate = htmlspecialchars($this->input->post("txtIdUnitUpdate", true), ENT_QUOTES);
+				$txtNppUpdate = htmlspecialchars($this->input->post("txtNppUpdate", true), ENT_QUOTES);
+				$txtNamaPegawaiUpdate = htmlspecialchars($this->input->post("txtNamaPegawaiUpdate", true), ENT_QUOTES);
+				$chkResetPassword = htmlspecialchars($this->input->post("chkResetPassword", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -331,6 +333,9 @@ class Pegawai extends CI_Controller {
 				$input["id_jabatan"] = $txtIdJabatanUpdate;
 				$input["id_unit"] = $txtIdUnitUpdate;
 				$input["npp"] = $txtNppUpdate;
+				if($chkResetPassword) {
+					$input["password"] = password_hash(getConfigWebsiteByParam("t_config", array("value"), array('name = "password_default"')), PASSWORD_DEFAULT);
+				}
 				$input["nama_pegawai"] = $txtNamaPegawaiUpdate;
 				
 				$this->PublicModel->update_query("t_pegawai", "id", $txtIdUpdate, $input);
@@ -357,7 +362,7 @@ class Pegawai extends CI_Controller {
 	 * @method delete
 	 */
 	function delete() {
-		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete"));
+		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete", true), ENT_QUOTES);
 		$condition = array();
 		$operand = "AND";
 		$output['error_status'] = false;
@@ -398,8 +403,8 @@ class Pegawai extends CI_Controller {
 	 * @method npp_update_check
 	 */
 	public function npp_update_check() {
-		$txtNppUpdate = htmlspecialchars($this->input->post('txtNppUpdate', true));
-		$txtCurrentNppUpdate = htmlspecialchars($this->input->post('txtCurrentNppUpdate', true));
+		$txtNppUpdate = htmlspecialchars($this->input->post('txtNppUpdate', true), ENT_QUOTES);
+		$txtCurrentNppUpdate = htmlspecialchars($this->input->post('txtCurrentNppUpdate', true), ENT_QUOTES);
 		if ($txtNppUpdate == $txtCurrentNppUpdate) {
 			return true;
 		} else {

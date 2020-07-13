@@ -14,6 +14,7 @@ if (!function_exists('setLoggedInUser')) {
         /** set session user login */
         $session['id'] = $userdata["id"];
         $session['is_active'] = $userdata["is_active"];
+        $session['privilege'] = $userdata["privilege"];
 
         $CI->session->set_userdata($session);
     }
@@ -28,10 +29,18 @@ if (!function_exists('isLoggedInUser')) {
 
         /** get session userdata */
         if($CI->session->userdata("is_login")) {
-			/** inquiry data user from database */
-			$query = $CI->PublicModel->get_data_by_condition(array(), "t_user", array()
-				, array('id = "'.$CI->session->userdata("id").'"'), "", array()
-				, 1);
+            /** inquiry data user from database */
+            if($CI->session->userdata("privilege") == 0 && $CI->uri->segment(1) == "ctrl") {
+                /** public admin */
+                $query = $CI->PublicModel->get_data_by_condition(array(), "t_user", array()
+                    , array('id = "'.$CI->session->userdata("id").'"'), "", array()
+                    , 1);
+            } else if($CI->session->userdata("privilege") == 1 && ($CI->uri->segment(1) == "" || $CI->uri->segment(1) == "usrs") || empty($CI->uri->segment(1))) {
+                /** public user */
+                $query = $CI->PublicModel->get_data_by_condition(array(), "t_pegawai", array()
+                    , array('id = "'.$CI->session->userdata("id").'"'), "", array()
+                    , 1);
+            }
             if(count($query) > 0) {
                 return true;
             }
@@ -58,21 +67,36 @@ if (!function_exists('getLoggedInUser')) {
 if (!function_exists('getLoggedInUserDb')) {
     function getLoggedInUserDb() {
         $CI =& get_instance();
-
+        
+        $table = "";
+        
         $userdata = array();
 
-        $query = $CI->PublicModel->get_data_by_condition(array(), "t_user", array()
+        if($CI->session->userdata("privilege") == 0) {
+            $table = "t_user";
+        } else if($CI->session->userdata("privilege") == 1) {
+            $table = "t_pegawai";
+        }
+
+        $query = $CI->PublicModel->get_data_by_condition(array(), $table, array()
             , array('id = "'.$CI->session->userdata("id").'"'), "", array()
             , 1);
+
         if(count($query) > 0) {
-            $userdata["id"] = $query[0]["id"];
-            $userdata["first_name"] = $query[0]["first_name"];
-            $userdata["last_name"] = $query[0]["last_name"];
-            $userdata["full_name"] = $query[0]["full_name"];
-            $userdata["email"] = $query[0]["email"];
-            $userdata["image"] = $query[0]["image"];
-            $userdata["last_login"] = $query[0]["last_login"];
-            $userdata["last_prev_login"] = $query[0]["last_prev_login"];
+            if($CI->session->userdata("privilege") == 0) {
+                $userdata["id"] = $query[0]["id"];
+                $userdata["first_name"] = $query[0]["first_name"];
+                $userdata["last_name"] = $query[0]["last_name"];
+                $userdata["full_name"] = $query[0]["full_name"];
+                $userdata["email"] = $query[0]["email"];
+                $userdata["image"] = $query[0]["image"];
+                $userdata["last_login"] = $query[0]["last_login"];
+                $userdata["last_prev_login"] = $query[0]["last_prev_login"];
+            } else if($CI->session->userdata("privilege") == 1) {
+                $userdata["id"] = $query[0]["id"];
+                $userdata["npp"] = $query[0]["npp"];
+                $userdata["nama_pegawai"] = $query[0]["nama_pegawai"];
+            }
         }
 
         /** return userdata */

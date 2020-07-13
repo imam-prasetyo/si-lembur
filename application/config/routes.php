@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'common';
+$route['default_controller'] = 'usrs';
 $route['404_override'] = 'InvalidPage';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -102,10 +102,25 @@ $route['ctrl/absensi-overtime'] = "boxing/AbsensiOvertime";
 $route['ctrl/absensi-overtime/(:any)'] = "boxing/AbsensiOvertime/$1";
 $route['ctrl/absensi-overtime/(:any)/(:any)'] = "boxing/AbsensiOvertime/$1/$2";
 
+$route['ctrl/absensi-shift'] = "boxing/AbsensiShift";
+$route['ctrl/absensi-shift/(:any)'] = "boxing/AbsensiShift/$1";
+$route['ctrl/absensi-shift/(:any)/(:any)'] = "boxing/AbsensiShift/$1/$2";
+
 $route['html'] = "boxing/JsonDataTable";
 $route['html/load'] = "boxing/JsonDataTable/loadDataToHtml";
 $route['html/load/(:any)'] = "boxing/JsonDataTable/loadDataToHtml/$1";
 
-$route['overtime'] = "Overtime";
-$route['overtime/(:any)'] = "Overtime/$1";
-$route['overtime/(:any)/(:any)'] = "Overtime/$1/$2";
+/** Private Access */
+$route['usrs'] = "Usrs";
+$route['usrs/login'] = "Usrs/login";
+$route['usrs/logout'] = "Usrs/logout";
+
+$route['usrs/dashboard'] = "pub/Dashboard";
+
+$route['usrs/overtime'] = "pub/Overtime";
+$route['usrs/overtime/(:any)'] = "pub/Overtime/$1";
+$route['usrs/overtime/(:any)/(:any)'] = "pub/Overtime/$1/$2";
+
+$route['usrs/overtime-history'] = "pub/OvertimeHistory";
+$route['usrs/overtime-history/(:any)'] = "pub/OvertimeHistory/$1";
+$route['usrs/overtime-history/(:any)/(:any)'] = "pub/OvertimeHistory/$1/$2";

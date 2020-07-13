@@ -214,7 +214,7 @@ class Jabatan extends CI_Controller {
 				$output["error_string"][] = form_error('txtJabatan');
 			} else {
 				/** input post */
-				$txtJabatan = htmlspecialchars($this->input->post("txtJabatan"));
+				$txtJabatan = htmlspecialchars($this->input->post("txtJabatan", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -295,8 +295,8 @@ class Jabatan extends CI_Controller {
 				$output["error_string"][] = form_error('txtJabatanUpdate');
 			} else {
 				/** input post */
-				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtJabatanUpdate = htmlspecialchars($this->input->post("txtJabatanUpdate"));
+				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate", true), ENT_QUOTES);
+				$txtJabatanUpdate = htmlspecialchars($this->input->post("txtJabatanUpdate", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -327,7 +327,7 @@ class Jabatan extends CI_Controller {
 	 * @method delete
 	 */
 	function delete() {
-		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete"));
+		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete", true), ENT_QUOTES);
 		$condition = array();
 		$operand = "AND";
 		$output['error_status'] = false;
@@ -368,8 +368,8 @@ class Jabatan extends CI_Controller {
 	 * @method jabatan_update_check
 	 */
 	public function jabatan_update_check() {
-		$txtJabatanUpdate = htmlspecialchars($this->input->post('txtJabatanUpdate', true));
-		$txtCurrentJabatanUpdate = htmlspecialchars($this->input->post('txtCurrentJabatanUpdate', true));
+		$txtJabatanUpdate = htmlspecialchars($this->input->post('txtJabatanUpdate', true), ENT_QUOTES);
+		$txtCurrentJabatanUpdate = htmlspecialchars($this->input->post('txtCurrentJabatanUpdate', true), ENT_QUOTES);
 		if ($txtJabatanUpdate == $txtCurrentJabatanUpdate) {
 			return true;
 		} else {

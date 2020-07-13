@@ -60,7 +60,7 @@ class Ctrl extends CI_Controller {
 		$data["data"] = $data;
 
 		/** check session user login */
-		if (!isLoggedInUser()) {	
+		if (!isLoggedInUser()) {
 			/** load data to view */
 			$this->load->view('boxing/login', $data);
 		} else {
@@ -127,6 +127,7 @@ class Ctrl extends CI_Controller {
 				if ($userdata["is_active"] == 'Y') {
 					if (password_verify($password, $userdata["password"])) {
 						/** set session user login */
+						$userdata["privilege"] = 0;
 						setLoggedInUser($userdata);
 
 						/** update login datetime */

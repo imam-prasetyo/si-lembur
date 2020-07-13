@@ -72,9 +72,11 @@ class InvalidPage extends CI_Controller {
 
 		/** load data to view */
 		if (isLoggedInUser()) {
-			$this->load->view('boxing/err/index', $data);
-		} else {
-			$this->load->view('common/index', $data);
+			if($data["data"]["session"]["privilege"] == 0 && $data["data"]["url_web"]["class"] == "ctrl") {
+				$this->load->view('boxing/err/index', $data);
+			} else if($data["data"]["session"]["privilege"] == 1 && $data["data"]["url_web"]["class"] == "usrs") {
+				// $this->load->view('boxing/err/index', $data);
+			}
 		}
 	}
 

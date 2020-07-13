@@ -217,8 +217,8 @@ class AbsensiApproval extends CI_Controller {
 				$output["error_string"][] = form_error('txtIdPegawai');
 			} else {
 				/** input post */
-				$txtIdDivisi = htmlspecialchars($this->input->post("txtIdDivisi"));
-				$txtIdPegawai = htmlspecialchars($this->input->post("txtIdPegawai"));
+				$txtIdDivisi = htmlspecialchars($this->input->post("txtIdDivisi", true), ENT_QUOTES);
+				$txtIdPegawai = htmlspecialchars($this->input->post("txtIdPegawai", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -303,9 +303,9 @@ class AbsensiApproval extends CI_Controller {
 				$output["error_string"][] = form_error('txtIdPegawaiUpdate');
 			} else {
 				/** input post */
-				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtIdDivisiUpdate = htmlspecialchars($this->input->post("txtIdDivisiUpdate"));
-				$txtIdPegawaiUpdate = htmlspecialchars($this->input->post("txtIdPegawaiUpdate"));
+				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate", true), ENT_QUOTES);
+				$txtIdDivisiUpdate = htmlspecialchars($this->input->post("txtIdDivisiUpdate", true), ENT_QUOTES);
+				$txtIdPegawaiUpdate = htmlspecialchars($this->input->post("txtIdPegawaiUpdate", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -337,7 +337,7 @@ class AbsensiApproval extends CI_Controller {
 	 * @method delete
 	 */
 	function delete() {
-		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete"));
+		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete", true), ENT_QUOTES);
 		$condition = array();
 		$operand = "AND";
 		$output['error_status'] = false;

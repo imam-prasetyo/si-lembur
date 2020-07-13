@@ -223,10 +223,10 @@ class User extends CI_Controller {
 				$output["error_string"][] = form_error('txtIsActive');
 			} else {
 				/** input post */
-				$txtEmail = htmlspecialchars($this->input->post("txtEmail"));
-				$txtFirstName = htmlspecialchars($this->input->post("txtFirstName"));
-				$txtLastName = htmlspecialchars($this->input->post("txtLastName"));
-				$txtIsActive = htmlspecialchars($this->input->post("txtIsActive"));
+				$txtEmail = htmlspecialchars($this->input->post("txtEmail", true), ENT_QUOTES);
+				$txtFirstName = htmlspecialchars($this->input->post("txtFirstName", true), ENT_QUOTES);
+				$txtLastName = htmlspecialchars($this->input->post("txtLastName", true), ENT_QUOTES);
+				$txtIsActive = htmlspecialchars($this->input->post("txtIsActive", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -328,13 +328,13 @@ class User extends CI_Controller {
 				$output["error_string"][] = form_error('txtIsActiveUpdate');
 			} else {
 				/** input post */
-				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtEmailUpdate = htmlspecialchars($this->input->post("txtEmailUpdate"));
-				$txtCurrentEmailUpdate = htmlspecialchars($this->input->post("txtCurrentEmailUpdate"));
-				$txtFirstNameUpdate = htmlspecialchars($this->input->post("txtFirstNameUpdate"));
-				$txtLastNameUpdate = htmlspecialchars($this->input->post("txtLastNameUpdate"));
-				$txtIsActiveUpdate = htmlspecialchars($this->input->post("txtIsActiveUpdate"));
-				$chkResetPassword = htmlspecialchars($this->input->post("chkResetPassword"));
+				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate", true), ENT_QUOTES);
+				$txtEmailUpdate = htmlspecialchars($this->input->post("txtEmailUpdate", true), ENT_QUOTES);
+				$txtCurrentEmailUpdate = htmlspecialchars($this->input->post("txtCurrentEmailUpdate", true), ENT_QUOTES);
+				$txtFirstNameUpdate = htmlspecialchars($this->input->post("txtFirstNameUpdate", true), ENT_QUOTES);
+				$txtLastNameUpdate = htmlspecialchars($this->input->post("txtLastNameUpdate", true), ENT_QUOTES);
+				$txtIsActiveUpdate = htmlspecialchars($this->input->post("txtIsActiveUpdate", true), ENT_QUOTES);
+				$chkResetPassword = htmlspecialchars($this->input->post("chkResetPassword", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -373,7 +373,7 @@ class User extends CI_Controller {
 	 * @method delete
 	 */
 	function delete() {
-		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete"));
+		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete", true), ENT_QUOTES);
 		$condition = array();
 		$operand = "AND";
 		$path_upload = "/img/profile/";
@@ -429,8 +429,8 @@ class User extends CI_Controller {
 	 * @method email_user_update_check
 	 */
 	public function email_user_update_check() {
-		$txtEmailUpdate = htmlspecialchars($this->input->post('txtEmailUpdate', true));
-		$txtCurrentEmailUpdate = htmlspecialchars($this->input->post('txtCurrentEmailUpdate', true));
+		$txtEmailUpdate = htmlspecialchars($this->input->post('txtEmailUpdate', true), ENT_QUOTES);
+		$txtCurrentEmailUpdate = htmlspecialchars($this->input->post('txtCurrentEmailUpdate', true), ENT_QUOTES);
 		if ($txtEmailUpdate == $txtCurrentEmailUpdate) {
 			return true;
 		} else {

@@ -20,6 +20,7 @@ if (!function_exists('getConfigWebsite')) {
         $array = array();
         /** Default config website */
         $array["admin_panel"] = "ctrl"; /** Important : MUST have same name in routes.php */
+        $array["user_panel"] = "usrs"; /** Important : MUST have same name in routes.php */
         $array["current_year"] = date('Y');
 
         /** Default framework */

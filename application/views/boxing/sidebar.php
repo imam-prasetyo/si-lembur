@@ -74,8 +74,25 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Approval</h6>
                             <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-approval"); ?>">Approval</a>
+                            <h6 class="collapse-header">Shift</h6>
+                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-shift"); ?>">Shift</a>
                             <h6 class="collapse-header">Overtime</h6>
-                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-overtime"); ?>">Overtime / Lembur</a>
+                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-overtime"); ?>">Overtime</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAbsensiReport" aria-expanded="true" aria-controls="collapseAbsensiReport">
+                    <i class="fa fa-database"></i>
+                        <span>Report</span>
+                    </a>
+                    <div id="collapseAbsensiReport" class="collapse" aria-labelledby="headingAbsensiReport" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Shift</h6>
+                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-report-shift"); ?>">Shift</a>
+                            <h6 class="collapse-header">Overtime</h6>
+                            <a class="collapse-item" href="<?= base_url($data["config_web"]["admin_panel"]."/absensi-report-overtime"); ?>">Overtime</a>
                         </div>
                     </div>
                 </li>

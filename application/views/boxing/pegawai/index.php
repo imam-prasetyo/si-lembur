@@ -89,7 +89,7 @@
                     $('<option>').appendTo(htmlInput).attr({
                         "value" : ""
                     });
-                    $.each(data.html, function(index) {	
+                    $.each(data.html, function(index) {
                         if(id == null) {
                             $('<option>').text(data.html[index][data.key[1]]).appendTo(htmlInput).attr({
                                 "value" : data.html[index][data.key[0]]
@@ -491,6 +491,13 @@
                                         <small class="text-danger">
                                             <span class="help-block"></span>
                                         </small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Reset Password</label>
+                                    <div class="col-md-8 custom-control">
+                                        <input type="checkbox" class="form-control custom-control-input" id="chkResetPassword" name="chkResetPassword">
+                                        <label class="custom-control-label" for="chkResetPassword">Yes</label>
                                     </div>
                                 </div>
                             </div>

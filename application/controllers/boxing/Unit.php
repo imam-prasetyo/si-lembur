@@ -217,8 +217,8 @@ class Unit extends CI_Controller {
 				$output["error_string"][] = form_error('txtUnit');
 			} else {
 				/** input post */
-				$txtIdDivisi = htmlspecialchars($this->input->post("txtIdDivisi"));
-				$txtUnit = htmlspecialchars($this->input->post("txtUnit"));
+				$txtIdDivisi = htmlspecialchars($this->input->post("txtIdDivisi", true), ENT_QUOTES);
+				$txtUnit = htmlspecialchars($this->input->post("txtUnit", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -303,9 +303,9 @@ class Unit extends CI_Controller {
 				$output["error_string"][] = form_error('txtUnitUpdate');
 			} else {
 				/** input post */
-				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate"));
-				$txtIdDivisiUpdate = htmlspecialchars($this->input->post("txtIdDivisiUpdate"));
-				$txtUnitUpdate = htmlspecialchars($this->input->post("txtUnitUpdate"));
+				$txtIdUpdate = htmlspecialchars($this->input->post("txtIdUpdate", true), ENT_QUOTES);
+				$txtIdDivisiUpdate = htmlspecialchars($this->input->post("txtIdDivisiUpdate", true), ENT_QUOTES);
+				$txtUnitUpdate = htmlspecialchars($this->input->post("txtUnitUpdate", true), ENT_QUOTES);
 			}
 
 			if(!$output['error_status']) {
@@ -337,7 +337,7 @@ class Unit extends CI_Controller {
 	 * @method delete
 	 */
 	function delete() {
-		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete"));
+		$txtIdDelete = htmlspecialchars($this->input->post("txtIdDelete", true), ENT_QUOTES);
 		$condition = array();
 		$operand = "AND";
 		$output['error_status'] = false;
@@ -378,8 +378,8 @@ class Unit extends CI_Controller {
 	 * @method unit_update_check
 	 */
 	public function unit_update_check() {
-		$txtUnitUpdate = htmlspecialchars($this->input->post('txtUnitUpdate', true));
-		$txtCurrentUnitUpdate = htmlspecialchars($this->input->post('txtCurrentUnitUpdate', true));
+		$txtUnitUpdate = htmlspecialchars($this->input->post('txtUnitUpdate', true), ENT_QUOTES);
+		$txtCurrentUnitUpdate = htmlspecialchars($this->input->post('txtCurrentUnitUpdate', true), ENT_QUOTES);
 		if ($txtUnitUpdate == $txtCurrentUnitUpdate) {
 			return true;
 		} else {
