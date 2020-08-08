@@ -60,7 +60,7 @@ $autoload['packages'] = array();
 */
 $autoload['libraries'] = array('database', 'session', 'form_validation'
 , 'pagination', 'upload', 'user_agent'
-, 'CheckPasswordComplexity', 'StringCleansingUrl');
+, 'CheckPasswordComplexity', 'Pdf', 'StringCleansingUrl');
 
 /*
 | -------------------------------------------------------------------

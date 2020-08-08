@@ -102,9 +102,17 @@ $route['ctrl/absensi-overtime'] = "boxing/AbsensiOvertime";
 $route['ctrl/absensi-overtime/(:any)'] = "boxing/AbsensiOvertime/$1";
 $route['ctrl/absensi-overtime/(:any)/(:any)'] = "boxing/AbsensiOvertime/$1/$2";
 
-$route['ctrl/absensi-shift'] = "boxing/AbsensiShift";
-$route['ctrl/absensi-shift/(:any)'] = "boxing/AbsensiShift/$1";
-$route['ctrl/absensi-shift/(:any)/(:any)'] = "boxing/AbsensiShift/$1/$2";
+// $route['ctrl/absensi-shift'] = "boxing/AbsensiShift";
+// $route['ctrl/absensi-shift/(:any)'] = "boxing/AbsensiShift/$1";
+// $route['ctrl/absensi-shift/(:any)/(:any)'] = "boxing/AbsensiShift/$1/$2";
+
+$route['ctrl/absensi-overtime-report'] = "boxing/AbsensiOvertimeReport";
+$route['ctrl/absensi-overtime-report/(:any)'] = "boxing/AbsensiOvertimeReport/$1";
+$route['ctrl/absensi-overtime-report/(:any)/(:any)'] = "boxing/AbsensiOvertimeReport/$1/$2";
+
+// $route['ctrl/absensi-shift-report'] = "boxing/AbsensiOvertimeReport";
+// $route['ctrl/absensi-shift-report/(:any)'] = "boxing/AbsensiOvertimeReport/$1";
+// $route['ctrl/absensi-shift-report/(:any)/(:any)'] = "boxing/AbsensiOvertimeReport/$1/$2";
 
 $route['html'] = "boxing/JsonDataTable";
 $route['html/load'] = "boxing/JsonDataTable/loadDataToHtml";

@@ -50,7 +50,7 @@ class JsonDataTable extends CI_Controller {
             switch($data) {
                 case "divisi";
                     $condition = $conditions;
-                    $field = array("id", "divisi");
+                    $field = array("id", "divisi", "deskripsi");
                     $output["key"] = $field;
                     $output["html"] = $this->_dataLoad("t_divisi", "id", $field, $condition, "AND", 0);
                     break;
@@ -68,7 +68,7 @@ class JsonDataTable extends CI_Controller {
                     break;
                 case "pegawai-absensi-approval";
                     $condition = $conditions;
-                    $field = array("id", "npp", "nama_pegawai");
+                    $field = array("id", "npp", "nama_pegawai", "kode_jabatan");
                     $output["key"] = $field;
                     $output["html"] = $this->_dataLoad("vw_pegawai_absensi_approval", "id", $field, $condition, "AND", 0);
                     break;

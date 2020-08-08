@@ -181,7 +181,6 @@ class Overtime extends CI_Controller {
 			$this->form_validation->set_message('tanggal_lembur_input', 'Invalid format date');
 			return false;
 		}
-
 		$datetime1 = date_create($txtTanggalLembur);
 		$datetime2 = date_create(date('Y-m-d'));
 		$interval = date_diff($datetime1, $datetime2);
@@ -189,7 +188,6 @@ class Overtime extends CI_Controller {
 			$this->form_validation->set_message('tanggal_lembur_input', 'Tanggal lebih besar dari hari ini.');
 			return false;
 		}
-
 		return true;
 	}
 
